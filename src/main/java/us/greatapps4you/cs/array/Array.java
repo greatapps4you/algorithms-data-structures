@@ -1,5 +1,7 @@
 package us.greatapps4you.cs.array;
 
+import java.util.Arrays;
+
 public class Array {
 
     private int count = 0;
@@ -31,7 +33,8 @@ public class Array {
         }
     }
 
-    public int[] getData() {
-        return data;
+    @Override
+    public String toString() {
+        return Arrays.toString(data);
     }
 }

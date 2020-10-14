@@ -24,13 +24,13 @@ class ArrayTest {
     @Test
     void removeAtRandom() {
         array.removeAt(3);
-        System.out.println("actual: " + Arrays.toString(array.getData()) + " | length: " + array.size());
+        System.out.println("actual: " + array+ " | length: " + array.size());
         Assertions.assertEquals(50, array.getAt(3));
         Assertions.assertEquals(70, array.getAt(5));
         Assertions.assertEquals(6, array.size());
 
         array.removeAt(2);
-        System.out.println("actual: " + Arrays.toString(array.getData()) + " | length: " + array.size());
+        System.out.println("actual: " + array+ " | length: " + array.size());
         Assertions.assertEquals(50, array.getAt(2));
         Assertions.assertEquals(60, array.getAt(3));
         Assertions.assertEquals(5, array.size());
@@ -40,27 +40,31 @@ class ArrayTest {
     @Test
     void removeAtTheBegining() {
         array.removeAt(0);
+        System.out.println("actual: " + array+ " | length: " + array.size());
         Assertions.assertEquals(20, array.getAt(0));
         Assertions.assertEquals(6, array.size());
 
         array.removeAt(0);
+        System.out.println("actual: " + array+ " | length: " + array.size());
         Assertions.assertEquals(30, array.getAt(0));
         Assertions.assertEquals(5, array.size());
 
         array.removeAt(0);
+        System.out.println("actual: " + array+ " | length: " + array.size());
         Assertions.assertEquals(40, array.getAt(0));
         Assertions.assertEquals(4, array.size());
-
-        System.out.println("actual: " + Arrays.toString(array.getData()) + " | length: " + array.size());
-
     }
 
     @Test
     void insert() {
         Array array = new Array();
+        System.out.println("actual: " + array+ " | length: " + array.size());
         array.insert(10);
+        System.out.println("actual: " + array+ " | length: " + array.size());
         array.insert(20);
+        System.out.println("actual: " + array+ " | length: " + array.size());
         array.insert(30);
+        System.out.println("actual: " + array+ " | length: " + array.size());
 
         int expectedSize = 3;
 
