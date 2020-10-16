@@ -8,6 +8,22 @@ import org.junit.jupiter.api.Test;
 class StringCasesTest {
 
     @Test
+    void stringObjectCreationTest(){
+        String s1 = new String("durga"); //New object on the heap and new object on the SCP (String Constant Pool)
+        String s2 = new String("durga"); //New object on the heap but no new object on the SCP
+        String s3 = "durga"; //No new object on the heap or scp
+        String s4 = "durga"; //No new object on the heap or scp
+        //Total objects created: 3 objects. 2 on the heap and 1 on the SCP
+
+        Assertions.assertFalse(s1 == s2); // Both live on the heap but each one points to a different object
+        Assertions.assertFalse(s1 == s3); // s1 lives on the heap and s3 on the SCP
+        Assertions.assertFalse(s1 == s4); // s1 lives on the heap and s4 on the SCP
+        Assertions.assertFalse(s2 == s3); // s2 lives on the heap and s3 on the SCP
+        Assertions.assertFalse(s2 == s4); // s2 lives on the heap and s4 on the SCP
+        Assertions.assertTrue(s3 == s4); //Both pointing to "durga" on the SCP
+    }
+
+    @Test
     void stringBufferComparisonTest(){
         StringBuffer sb1 = new StringBuffer("durga");
         StringBuffer sb2 = new StringBuffer("durga");
