@@ -13,6 +13,7 @@ class NumbersSumTest {
 
     private List<Integer> numbers;
     private Map<String, Integer> numbersMap;
+    private List<Item> salesBasket;
 
     @BeforeEach
     void setup() {
@@ -27,6 +28,8 @@ class NumbersSumTest {
         numbersMap.put("SEVEN", 7);
         numbersMap.put("EIGHT", 8);
         numbersMap.put("NINE", 9);
+
+        salesBasket = Arrays.asList(new Item(1, 10), new Item(2, 15), new Item(3, 25), new Item(4, 40));
     }
 
     @Test
@@ -65,5 +68,48 @@ class NumbersSumTest {
         Assertions.assertEquals(45, actual);
     }
 
+    /**
+     * Sum Number from Object
+     */
+
+    @Test
+    void sumNumbersfromObjectWithReduce() {
+        Integer actual = salesBasket.stream()
+            .map(item -> item.getPrice())
+            .reduce(0, (a, b) -> a + b);
+        Assertions.assertEquals(90, actual);
+    }
+
+    @Test
+    void sumNumbersfromObjectWithExistingMethodReference() {
+        Integer actual = salesBasket.stream()
+            .map(item -> item.getPrice())
+            .reduce(0, Integer::sum);
+        Assertions.assertEquals(90, actual);
+    }
+
+    @Test
+    void sumNumbersfromObjectWithCustomMethodReference() {
+        Integer actual = salesBasket.stream()
+            .map(item -> item.getPrice())
+            .reduce(0, NumbersSum::sum);
+        Assertions.assertEquals(90, actual);
+    }
+
+    @Test
+    void sumNumbersfromObjectWithCollect() {
+        Integer actual = salesBasket.stream()
+            .map(item -> item.getPrice())
+            .collect(Collectors.summingInt(Integer::intValue));
+        Assertions.assertEquals(90, actual);
+    }
+
+    @Test
+    void sumNumbersfromObjectWithIntStream() {
+        Integer actual = salesBasket.stream()
+            .mapToInt(item -> item.getPrice())
+            .sum();
+        Assertions.assertEquals(90, actual);
+    }
 
 }
