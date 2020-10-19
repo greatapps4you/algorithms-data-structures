@@ -40,5 +40,11 @@ class NumbersSumTest {
         Assertions.assertEquals(45, actual);
     }
 
+    @Test
+    void sumNumbersWithIntStream() {
+        Integer actual = numbers.stream().mapToInt(Integer::intValue).sum();
+        Assertions.assertEquals(45, actual);
+    }
+
 
 }
