@@ -2,6 +2,7 @@ package us.greatapps4you.cs.stream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +31,12 @@ class NumbersSumTest {
     @Test
     void sumNumbersWithCustomMethodReference() {
         Integer actual = numbers.stream().reduce(0, NumbersSum::sum);
+        Assertions.assertEquals(45, actual);
+    }
+
+    @Test
+    void sumNumbersWithCollect() {
+        Integer actual = numbers.stream().collect(Collectors.summingInt(Integer::intValue));
         Assertions.assertEquals(45, actual);
     }
 
