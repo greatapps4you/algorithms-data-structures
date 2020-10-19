@@ -14,6 +14,7 @@ class NumbersSumTest {
     private List<Integer> numbers;
     private Map<String, Integer> numbersMap;
     private List<Item> salesBasket;
+    private String rawData;
 
     @BeforeEach
     void setup() {
@@ -30,7 +31,12 @@ class NumbersSumTest {
         numbersMap.put("NINE", 9);
 
         salesBasket = Arrays.asList(new Item(1, 10), new Item(2, 15), new Item(3, 25), new Item(4, 40));
+        rawData = "Item1 10 Item2 25 Item3 30 Item4 45";
     }
+
+    /**
+     * Sum List of Numbers
+     */
 
     @Test
     void sumNumbersWithReduce() {
@@ -69,7 +75,7 @@ class NumbersSumTest {
     }
 
     /**
-     * Sum Number from Object
+     * Sum List of Objects with a Number Field
      */
 
     @Test
@@ -110,6 +116,19 @@ class NumbersSumTest {
             .mapToInt(item -> item.getPrice())
             .sum();
         Assertions.assertEquals(90, actual);
+    }
+
+    /**
+     * Sum a Numbers list extracted from Text
+     */
+
+    @Test
+    void sumNumbersFromTextWithIntStream() {
+        Integer actual = Arrays.stream(rawData.split(" "))
+            .filter((number) -> number.matches("\\d+"))
+            .mapToInt(Integer::valueOf)
+            .sum();
+        Assertions.assertEquals(110, actual);
     }
 
 }
