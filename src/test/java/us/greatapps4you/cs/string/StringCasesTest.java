@@ -1,6 +1,4 @@
-package us.greatapps4you.cs.array;
-
-import static org.junit.jupiter.api.Assertions.*;
+package us.greatapps4you.cs.string;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
